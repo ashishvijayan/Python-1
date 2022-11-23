@@ -16,35 +16,18 @@ def collection_to_file(scores_dataset):
     Return:
         None
     """
-    f = open('scores.csv','w')
-    f.write('SeqNo,')
-    f.write('Name,')
-    f.write('Gender,')
-    f.write('City,')
-    f.write('Mathematics,')
-    f.write('Physics,')
-    f.write('Chemistry\n')
-    sd = scores_dataset
-    
-
-    for i in range(len(sd)):
-        
-        if i == len(sd)-1:
-            f.write(f'{sd[i]["SeqNo"]},')
-            f.write(f'{sd[i]["Name"]},')
-            f.write(f'{sd[i]["Gender"]},')
-            f.write(f'{sd[i]["City"]},')
-            f.write(f'{sd[i]["Mathematics"]},')
-            f.write(f'{sd[i]["Physics"]},')
-            f.write(f'{sd[i]["Chemistry"]}')
-            
-        else:
-            f.write(f'{sd[i]["SeqNo"]},')
-            f.write(f'{sd[i]["Name"]},')
-            f.write(f'{sd[i]["Gender"]},')
-            f.write(f'{sd[i]["City"]},')
-            f.write(f'{sd[i]["Mathematics"]},')
-            f.write(f'{sd[i]["Physics"]},')
-            f.write(f'{sd[i]["Chemistry"]}\n')
+    f = open('scores.csv', 'w')
+    f.write('SeqNo,Name,Gender,City,Mathematics,Physics,Chemistry\n')
+    for stud in scores_dataset:
+        sno = stud['SeqNo']
+        name = stud['Name']
+        gender = stud['Gender']
+        city = stud['City']
+        ma = stud['Mathematics']
+        phy = stud['Physics']
+        chm = stud['Chemistry']
+        line = f'{sno},{name},{gender},{city},{ma},{phy},{chm}\n'
+        if stud['SeqNo'] == scores_dataset[-1]['SeqNo']:
+            line = line.strip()
+        f.write(line)
     f.close()
-
